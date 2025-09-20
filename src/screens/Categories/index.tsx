@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, FlatList, ImageBackground} from 'react-native';
+import {View, Text, FlatList, ImageBackground, Switch} from 'react-native';
 import axios from 'axios';
 import {styles} from './styles';
+import { useTheme } from '../../components/Context/ThemeContext';
+import { Colors } from '../../styles';
 
 type Category = {
   id: number;
@@ -11,6 +13,8 @@ type Category = {
 
 export default function CategoriesScreen() {
   const [categories, setCategories] = useState<Category[]>([]);
+  const {theme, toggleTheme} = useTheme();
+  const isDark = theme === 'dark';
   
 
   useEffect(() => {
@@ -21,7 +25,18 @@ export default function CategoriesScreen() {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgroundColor: isDark ? Colors.BLACK : Colors.WHITE}]}>
+        <View style={styles.header}>
+        <Text style={[styles.headerTitle, {color: isDark ? Colors.WHITE  : Colors.BLACK}]}>
+          Categories
+        </Text>
+        <Switch
+          value={isDark}
+          onValueChange={toggleTheme}
+          thumbColor={isDark ? Colors.WHITE : Colors.BLACK }
+          trackColor={{false: '#ccc', true: '#666'}}
+        />
+      </View>
       <FlatList
         numColumns={2}
         data={categories}

@@ -3,11 +3,6 @@ import {Colors, Spacing, Typography} from '../../styles';
 import {getHeight, getWidth, scale} from '../../styles/dimensions';
 
 export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: Spacing.S11,
-    backgroundColor: Colors.WHITE,
-  },
   itemContainer: {
     marginBottom: Spacing.S16,
     height: getHeight(160),
@@ -15,6 +10,8 @@ export const styles = StyleSheet.create({
     borderRadius: scale(12),
     overflow: 'hidden',
     margin: Spacing.S11,
+    borderWidth: 2,
+    borderColor: Colors.YELLOW,
   },
   image: {
     flex: 1,
@@ -27,5 +24,20 @@ export const styles = StyleSheet.create({
     fontWeight: '500',
     backgroundColor: 'rgba(0,0,0,0.3)',
     padding: Spacing.S4,
+  },
+  container: {
+    flex: 1,
+    paddingHorizontal: 12,
+    paddingTop: 12,
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 12,
+  },
+  headerTitle: {
+    fontSize: 20,
+    fontWeight: '700',
   },
 });
