@@ -11,6 +11,8 @@ export const styles = StyleSheet.create({
     backgroundColor: Colors.PRIMARY1,
     shadowRadius: 4,
     shadowOffset: {width: 0, height: 2},
+    borderWidth: 2,
+    borderColor: Colors.YELLOW,
   },
 
   image: {

@@ -3,7 +3,7 @@ import {Colors, Spacing, Typography} from '../../styles';
 import {getHeight, getWidth} from '../../styles/dimensions';
 
 export const styles = StyleSheet.create({
-  main: {flex: 1, marginTop: Spacing.S16},
+  main: {flex: 1},
   row: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -35,4 +35,5 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: getHeight(320),
   },
+  data: {color:Colors.PRIMARY}
 });

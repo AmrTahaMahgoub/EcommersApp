@@ -14,18 +14,19 @@ import {AppDispatch, RootState} from '../../redux';
 import {getProducts} from '../../redux/actions/productActions';
 import {addToCart} from '../../redux/reducers/cartReducer';
 import {styles} from './styles';
+import {useTheme} from '../../components/Context/ThemeContext';
+import {Colors} from '../../styles';
 
 export default function Products() {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch<AppDispatch>();
   const {navigate} = useNavigationHooks<any>();
+  const {theme} = useTheme();
+  const isDark = theme === 'dark';
 
   const {products, loading, error} = useSelector(
     (state: RootState) => state.productReducer,
   );
-  const goToDetails = (id: number) => {
-    navigate('Details', {id});
-  };
 
   useEffect(() => {
     dispatch(getProducts(page, 10));
@@ -41,7 +42,7 @@ export default function Products() {
     ({item}) => (
       <ProductItem
         onPressCard={() => {
-          navigate("Details", {ProductDetails: item});
+          navigate('Details', {ProductDetails: item});
         }}
         {...item}
         onPress={() => {
@@ -62,7 +63,11 @@ export default function Products() {
   );
 
   return (
-    <View style={styles.main}>
+    <View
+      style={[
+        styles.main,
+        {backgroundColor: isDark ? Colors.BLACK : Colors.WHITE},
+      ]}>
       {error ? (
         <Text style={{color: 'red'}}>{error}</Text>
       ) : (
